@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Тест на эмоциональное выгорание</title>
+  <style>
+    :root{
+      --accent:#8B5CF6;
+      --bg:#07060a;
+      --text:#EDEBFF;
+      --glass:rgba(139,92,246,0.06);
+      --border:rgba(139,92,246,0.12);
+    }
+    body{
+      margin:0;
+      font-family:Inter, sans-serif;
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(139,92,246,0.10), transparent),
+        radial-gradient(700px 500px at 90% 90%, rgba(139,92,246,0.06), transparent),
+        var(--bg);
+      color:var(--text);
+    }
+    .wrap{max-width:850px;margin:40px auto;padding:20px}
+
+    .card{
+      background:rgba(14,12,20,0.6);
+      padding:22px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      backdrop-filter:blur(10px);
+      box-shadow:0 18px 40px rgba(0,0,0,0.55);
+      margin-bottom:20px;
+      animation:fade 0.6s ease;
+    }
+
+    @keyframes fade{from{opacity:0;transform:translateY(10px)}}
+
+    h2{color:var(--accent);margin-top:0}
+    label{
+      display:block;margin:10px 0;padding:10px;
+      border-radius:8px;
+      background:rgba(139,92,246,0.05);
+      cursor:pointer;
+      border:1px solid rgba(139,92,246,0.12)
+    }
+    label:hover{background:rgba(139,92,246,0.12)}
+    input[type=radio]{margin-right:8px}
+
+    .btn{
+      background:linear-gradient(90deg,var(--accent),#5b21b6);
+      border:0;padding:12px 20px;color:#fff;border-radius:10px;
+      cursor:pointer;font-size:16px;
+      box-shadow:0 8px 28px rgba(139,92,246,0.28);
+      margin-top:10px;
+    }
+    .btn:hover{transform:translateY(-2px)}
+
+    .result{
+      font-size:20px;margin-top:20px;padding:20px;
+      background:rgba(139,92,246,0.08);
+      border:1px solid rgba(139,92,246,0.18);
+      border-radius:12px;
+    }
+
+    a.back{display:inline-block;margin-top:20px;color:var(--accent)}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="card">
+      <h2>Тест на эмоциональное выгорание</h2>
+      <p>Выгорание — это состояние истощения, сниженной мотивации и отсутствия ресурса. Узнайте, насколько выражены его симптомы у вас.</p>
+    </div>
+
+    <form id="test">
+
+      <div class="card">
+        <h3>1. Вы чувствуете усталость даже после отдыха?</h3>
+        <label><input type="radio" name="q1" value="2">Да, постоянно</label>
+        <label><input type="radio" name="q1" value="1">Иногда</label>
+        <label><input type="radio" name="q1" value="0">Нет</label>
+      </div>
+
+      <div class="card">
+        <h3>2. Часто ли у вас пропадает мотивация что-то делать?</h3>
+        <label><input type="radio" name="q2" value="2">Да, очень часто</label>
+        <label><input type="radio" name="q2" value="1">Иногда</label>
+        <label><input type="radio" name="q2" value="0">Редко</label>
+      </div>
+
+      <div class="card">
+        <h3>3. Возникает ли чувство эмоциональной пустоты?</h3>
+        <label><input type="radio" name="q3" value="2">Да</label>
+        <label><input type="radio" name="q3" value="1">Иногда</label>
+        <label><input type="radio" name="q3" value="0">Нет</label>
+      </div>
+
+      <div class="card">
+        <h3>4. Вы замечаете, что стали раздражительнее?</h3>
+        <label><input type="radio" name="q4" value="2">Да</label>
+        <label><input type="radio" name="q4" value="1">Иногда</label>
+        <label><input type="radio" name="q4" value="0">Нет</label>
+      </div>
+
+      <div class="card">
+        <h3>5. Сложно ли вам сосредоточиться?</h3>
+        <label><input type="radio" name="q5" value="2">Да</label>
+        <label><input type="radio" name="q5" value="1">Бывает</label>
+        <label><input type="radio" name="q5" value="0">Нет</label>
+      </div>
+
+      <button type="button" class="btn" onclick="finishTest()">Показать результат</button>
+    </form>
+
+    <div id="result" class="result" style="display:none"></div>
+
+    <a href="index.html" class="back">← На главную</a>
+
+  </div>
+
+<script>
+function finishTest(){
+  const form = document.getElementById('test');
+  const data = new FormData(form);
+  let score = 0;
+
+  for (let v of data.values()) score += Number(v);
+
+  let res = "";
+  if(score <= 2){
+    res = "Выгорание пока не выражено. У вас достаточно внутреннего ресурса.";
+  } else if(score <= 5){
+    res = "Есть признаки лёгкого выгорания. Организуйте больше отдыха и смену деятельности.";
+  } else if(score <= 8){
+    res = "Средний уровень выгорания. Ваш ресурс на исходе — нужна пауза и поддержка.";
+  } else {
+    res = "Высокий уровень выгорания. Важно восстановиться, пересмотреть нагрузки и позаботиться о психоэмоциональном состоянии.";
+  }
+
+  const block = document.getElementById("result");
+  block.innerHTML = "<b>Ваш результат:</b><br><br>" + res;
+  block.style.display = "block";
+}
+</script>
+
+</body>
+</html>
