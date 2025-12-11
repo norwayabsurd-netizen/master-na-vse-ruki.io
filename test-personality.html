@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Тест на гибкость личных границ</title>
+
+  <style>
+    :root{
+      --accent:#8B5CF6;
+      --bg:#07060a;
+      --text:#EDEBFF;
+      --glass:rgba(139,92,246,0.06);
+      --border:rgba(139,92,246,0.12);
+    }
+
+    body{
+      margin:0;
+      font-family:Inter, sans-serif;
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(139,92,246,0.10), transparent),
+        radial-gradient(700px 500px at 90% 90%, rgba(139,92,246,0.06), transparent),
+        var(--bg);
+      color:var(--text);
+    }
+
+    .wrap{
+      max-width:850px;
+      margin:40px auto;
+      padding:20px;
+    }
+
+    .card{
+      background:rgba(14,12,20,0.6);
+      padding:22px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      backdrop-filter:blur(10px);
+      box-shadow:0 18px 40px rgba(0,0,0,0.55);
+      margin-bottom:20px;
+      animation:fade 0.6s ease;
+    }
+
+    @keyframes fade{
+      from{opacity:0; transform:translateY(10px);}
+    }
+
+    h2{color:var(--accent); margin-top:0;}
+
+    label{
+      display:block;
+      margin:10px 0;
+      padding:10px;
+      border-radius:8px;
+      background:rgba(139,92,246,0.05);
+      cursor:pointer;
+      border:1px solid rgba(139,92,246,0.12);
+    }
+    label:hover{
+      background:rgba(139,92,246,0.12);
+    }
+
+    input[type=radio]{margin-right:8px}
+
+    .btn{
+      background:linear-gradient(90deg,var(--accent),#5b21b6);
+      border:0;
+      padding:12px 20px;
+      color:#fff;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:16px;
+      box-shadow:0 8px 28px rgba(139,92,246,0.28);
+      margin-top:10px;
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .result{
+      font-size:20px;
+      margin-top:20px;
+      padding:20px;
+      background:rgba(139,92,246,0.08);
+      border:1px solid rgba(139,92,246,0.18);
+      border-radius:12px;
+    }
+
+    a.back{
+      display:inline-block;
+      margin-top:20px;
+      color:var(--accent);
+      font-size:16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="card">
+      <h2>Тест на гибкость личных границ</h2>
+      <p>
+        Личные границы — это внутреннее ощущение, где заканчиваетесь вы и начинаются другие.
+        Гибкие границы создают здоровые отношения и чувство устойчивости.  
+        Пройдите тест и узнайте, какие границы преобладают у вас.
+      </p>
+    </div>
+
+    <form id="test">
+
+      <div class="card">
+        <h3>1. Вам трудно говорить «нет», даже если вам что-то неудобно?</h3>
+        <label><input type="radio" name="q1" value="2">Да, часто</label>
+        <label><input type="radio" name="q1" value="1">Иногда</label>
+        <label><input type="radio" name="q1" value="0">Нет, обычно спокойно отказываю</label>
+      </div>
+
+      <div class="card">
+        <h3>2. Чувствуете ли вы ответственность за эмоции других людей?</h3>
+        <label><input type="radio" name="q2" value="2">Да, очень сильно</label>
+        <label><input type="radio" name="q2" value="1">Иногда</label>
+        <label><input type="radio" name="q2" value="0">Нет, эмоции каждого — их зона ответственности</label>
+      </div>
+
+      <div class="card">
+        <h3>3. Позволяете ли вы другим вмешиваться в ваши решения?</h3>
+        <label><input type="radio" name="q3" value="2">Да, часто уступаю</label>
+        <label><input type="radio" name="q3" value="1">Иногда прислушиваюсь</label>
+        <label><input type="radio" name="q3" value="0">Нет, решение остаётся за мной</label>
+      </div>
+
+      <div class="card">
+        <h3>4. Часто ли вы чувствуете вину, когда отстаиваете свои потребности?</h3>
+        <label><input type="radio" name="q4" value="2">Да, почти всегда</label>
+        <label><input type="radio" name="q4" value="1">Иногда</label>
+        <label><input type="radio" name="q4" value="0">Нет, это естественный процесс</label>
+      </div>
+
+      <div class="card">
+        <h3>5. Чувствуете ли вы, что ваши личные нужды отходят на второй план?</h3>
+        <label><input type="radio" name="q5" value="2">Да, очень часто</label>
+        <label><input type="radio" name="q5" value="1">Иногда</label>
+        <label><input type="radio" name="q5" value="0">Нет</label>
+      </div>
+
+      <div class="card">
+        <h3>6. Сложно ли вам просить о помощи?</h3>
+        <label><input type="radio" name="q6" value="2">Да, избегаю</label>
+        <label><input type="radio" name="q6" value="1">Бывает</label>
+        <label><input type="radio" name="q6" value="0">Нет, прошу свободно</label>
+      </div>
+
+      <div class="card">
+        <h3>7. Допускаете ли вы, что в отношениях можно иметь разное мнение без конфликта?</h3>
+        <label><input type="radio" name="q7" value="0">Да, это нормально</label>
+        <label><input type="radio" name="q7" value="1">Иногда</label>
+        <label><input type="radio" name="q7" value="2">Редко, боюсь напряжения</label>
+      </div>
+
+      <button type="button" class="btn" onclick="finishTest()">Показать результат</button>
+    </form>
+
+    <div id="result" class="result" style="display:none"></div>
+
+    <a href="index.html" class="back">← На главную</a>
+
+  </div>
+
+<script>
+function finishTest(){
+  const data = new FormData(document.getElementById("test"));
+  let score = 0;
+  for (let v of data.values()) score += Number(v);
+
+  let res = "";
+
+  if(score <= 3){
+    res = "<b>Ваши границы устойчивые</b>.<br><br>Вы умеете отделять свои желания от чужих, спокойно говорите «нет» и сохраняете баланс между близостью и автономией.";
+  }
+  else if(score <= 7){
+    res = "<b>Ваши границы гибкие</b>.<br><br>В целом вы уверенно держите личное пространство, но иногда всё же подстраиваетесь под других.";
+  }
+  else if(score <= 11){
+    res = "<b>Ваши границы размытые</b>.<br><br>Вы склонны уступать, брать на себя лишнюю ответственность и редко ставите свои потребности на первое место.";
+  }
+  else{
+    res = "<b>Ваши границы слишком мягкие</b>.<br><br>Вы часто ставите других выше себя, вам сложно выражать своё мнение и отстаивать личное пространство.";
+  }
+
+  const block = document.getElementById("result");
+  block.innerHTML = res;
+  block.style.display = "block";
+}
+</script>
+
+</body>
+</html>
