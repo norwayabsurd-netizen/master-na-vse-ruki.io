@@ -245,14 +245,26 @@
 
 
     <!-- Подписка -->
-    <section id="subscribe">
-      <h3 style="margin-bottom:12px;color:var(--accent)">Подписка на рассылку</h3>
-      <div class="card cta" style="display:flex;gap:12px;align-items:center">
-        <input class="input" id="email" placeholder="Ваш email для статей и практик" />
-        <button class="btn" id="subBtn">Подписаться</button>
-      </div>
-      <p class="muted" style="margin-top:8px">Получайте статьи о токсичных отношениях, выгорании и границах — запускайте свой путь к пониманию себя.</p>
+ <div class="card cta" style="display:flex;gap:12px;align-items:center">
+  <input class="input" id="email" placeholder="Ваш email для статей и практик" />
+  <button class="btn" id="subBtn">Подписаться</button>
+</div>
+
+<!-- Сообщение об успешной / неуспешной подписке -->
+<p id="subMsg" style="
+  margin-top:10px;
+  font-size:15px;
+  font-weight:500;
+  display:none;
+">
+</p>
+
+<p class="muted" style="margin-top:8px">
+  Получайте статьи о токсичных отношениях, выгорании и границах — запускайте свой путь к пониманию себя.
+</p>
+
     </section>
+
 
     <footer style="margin-top:28px;color:var(--muted);font-size:13px">Журнал "МАЙСТЕР НА ВСІ РУКИ" — новая эра психологии отношений. Читайте статьи и начинайте свой путь к пониманию себя.</footer>
 
@@ -339,14 +351,42 @@
     setTimeout(()=>{ title.style.transition='transform 1200ms ease-in-out'; title.style.transform='translateY(-8px)'; }, 3200);
 
     // ------------- Subscription action (demo) -------------
-    document.addEventListener('click', (e)=>{
-      if(e.target && e.target.id==='subBtn'){
-        const email = document.getElementById('email').value.trim();
-        if(!email || !email.includes('@')){ alert('Пожалуйста, введите корректный email'); return; }
-        alert('Спасибо! Вы подписаны. Проверьте почту. (демо)');
-        document.getElementById('email').value='';
-      }
-    });
+// ------------- Subscription action (demo) -------------
+document.addEventListener('click', (e) => {
+  if (!(e.target && e.target.id === 'subBtn')) return;
+
+  const emailEl = document.getElementById('email');
+  const msg = document.getElementById('subMsg');
+  const email = emailEl ? emailEl.value.trim() : '';
+
+  // safety: ensure msg element exists
+  if (!msg) {
+    // fallback to alert if subMsg missing
+    if (!email || !email.includes('@')) {
+      alert('Пожалуйста, введите корректный email');
+    } else {
+      alert('Спасибо! Вы подписаны. Проверьте почту. (демо)');
+      if (emailEl) emailEl.value = '';
+    }
+    return;
+  }
+
+  // Неверный email
+  if (!email || !email.includes('@')) {
+    msg.style.display = 'block';
+    msg.style.color = '#f87171'; // красный
+    msg.textContent = 'Пожалуйста, введите корректный email.';
+    return;
+  }
+
+  // Успешная подписка
+  msg.style.display = 'block';
+  msg.style.color = '#4ade80'; // ярко-зелёный
+  msg.textContent = 'Спасибо! Вы подписаны. Проверьте почту.';
+
+  // Очистка поля
+  if (emailEl) emailEl.value = '';
+});
 
     // ------------- Accessibility / small extras -------------
     // Keyboard: press 't' to toggle flips for demonstration
